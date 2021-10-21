@@ -1,0 +1,39 @@
+{
+  "name": "elokuu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "kehitys": "cross-env NODE_ENV=kehitys nodemon --exec ts-node src/index.ts",
+    "start": "cross-env NODE_END=tuotanto nodemon --exec ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@vonage/server-sdk": "^2.10.10",
+    "apollo-server": "^3.0.2",
+    "apollo-server-express": "^3.0.2",
+    "bcrypt": "^5.0.1",
+    "class-validator": "^0.13.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "graphql": "^15.5.1",
+    "graphql-playground": "^1.3.17",
+    "graphql-playground-middleware-express": "^1.7.22",
+    "graphql-subscriptions": "^1.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.7",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^16.4.2",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  }
+}
