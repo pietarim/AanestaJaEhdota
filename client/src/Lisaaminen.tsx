@@ -21,7 +21,7 @@ const Lisaaminen = () => {
   }
 
   const [muokkaa, { data, loading, error }] = useMutation<
-    { viesti: string },
+    { lisaaTapahtuma: string },
     { otsikko: string, numero: string, vaiheet: string[], osallistujat: string[] }
   >(LUOMINEN, { variables: { otsikko, numero, vaiheet, osallistujat } })
 
@@ -65,6 +65,7 @@ const Lisaaminen = () => {
 
   const Palaute = () => {
     if (data) {
+      console.log(data.lisaaTapahtuma)
       return (
         <MuiAlert
           elevation={6}
@@ -94,8 +95,8 @@ const Lisaaminen = () => {
     <>
       <Palaute />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 3 }, mx: { xs: 0.5 } }}>
-          <h1>Tapahtuman lisääminen</h1>
+        <h1 style={{ marginTop: "0", padding: "16px", fontSize: "56px", color: "#fafafa" }}>Luo tapahtuma</h1>
+        <Paper variant="outlined" sx={{ p: { xs: 3, md: 6 }, mx: { xs: 0.5 }, mb: 2 }} style={{ bottom: "10px" }}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -172,6 +173,7 @@ const Lisaaminen = () => {
           </Grid>
           <Button style={{ marginTop: "32px" }} variant="contained" onClick={Lisaaminen}>luo tapahtuma</Button>
         </Paper>
+        <div style={{ margin: "2px", opacity: "0" }}>a</div>
       </Container>
     </>
   )

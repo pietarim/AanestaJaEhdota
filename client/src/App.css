@@ -1,5 +1,20 @@
+body {
+  margin: 0;
+  top: 0;
+}
 .App {
   text-align: center;
+  position: relative;
+  height: 100vh;
+}
+
+.taustakuva {
+  height: 100vh;
+  width: 100vw;
+  z-index: -2;
+  background-image: url(./ruokailu.jpeg);
+  position: fixed;
+  opacity: 0.84;
 }
 
 .App-logo {

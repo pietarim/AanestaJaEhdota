@@ -189,6 +189,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="taustakuva"></div>
       {accesTokenS ? <HaeKaikki /> : <Lisaaminen />}
     </div>
   )
