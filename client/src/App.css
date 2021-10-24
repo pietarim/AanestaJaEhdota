@@ -58,16 +58,3 @@ body {
   justify-content: "space-between";
   margin-bottom: "24px";
 }
-
-/* @media only screen and (max-width: 600px) {
-  #palkki {
-    display: "block";
-  }
-} */
-
-/* .palkki {
-  width: "100%";
-  display: "flex";
-  justify-content: "space-between";
-  margin-bottom: "24px";
-} */
