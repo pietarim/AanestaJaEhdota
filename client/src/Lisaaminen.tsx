@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Card from '@mui/material/Card'
+import Alert from '@mui/material/Alert'
 import { produce } from "immer"
 import MuiAlert from '@material-ui/lab/Alert'
 import { useMutation } from "@apollo/client"
@@ -8,6 +10,9 @@ import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Button from '@material-ui/core/Button'
 import { LUOMINEN } from "./graphOperations"
+import { borderRadius } from '@mui/system'
+import CloseIcon from '@mui/icons-material/Close'
+import './App.css'
 
 const Lisaaminen = () => {
 
@@ -15,6 +20,7 @@ const Lisaaminen = () => {
   const [otsikko, setOtsikko] = useState("")
   const [vaiheet, setVaiheet] = useState(["", "", "", "", ""])
   const [numero, setNumero] = useState("")
+  const [naytaInfo, setNaytaInfo] = useState(false)
 
   const Lisaaminen = async () => {
     const tallennettu = await muokkaa()
@@ -63,17 +69,66 @@ const Lisaaminen = () => {
     setVaiheet(textFieldArr)
   }
 
+  /* async function kopiointi() {
+    const teksti = document.getElementById("teksti").innerHTML;
+    await navigator.clipboard.writeText(teksti);
+  } */
+
+  const Lisattava = () => {
+
+    return (
+      <div
+        style={{
+          position: "absolute", width: "100%"
+        }}
+      >
+        <div className="lisays"
+          /* style={{
+            height: "100px",
+            maxWidth: "600px",
+            backgroundColor: "lightGrey",
+            position: "relative",
+            margin: "33% auto",
+            top: "33%",
+            margin: "50px auto",
+            marginLeft: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 200,
+            borderRadius: "4px",
+            boxShadow: "0 0 10px 10px",
+            padding: "8px",
+          }} */>
+          <CloseIcon onClick={() => setNaytaInfo(false)} className="sulje" style={{ position: "absolute", right: "12px" }} />
+          <h3>Tapahtuma lisätty "{ }"</h3>
+          <p id="teksti">
+            Tapahtuma aaaa luotu. Osallistujien tunnukset: Tunnus: aaaas kirjautuminen: https://aanestajaehdota.com/?k=G88Ck6Ng&t=jc8oAtNp Tunnus: dafds kirjautuminen: https://aanestajaehdota.com/?k=fJH2zLep&t=jc8oAtNp Tunnus: asdsdf kirjautuminen: https://aanestajaehdota.com/?k=hA3JvJcT&t=jc8oAtNp
+          </p>
+          <p>Olen tallentanut tapahtuman tiedot</p>
+          <Button>Poista välimuistista</Button>
+          <Button>Kopioi tiedot</Button>
+        </div>
+      </div >
+    )
+  }
+
   const Palaute = () => {
     if (data) {
       console.log(data.lisaaTapahtuma)
       return (
-        <MuiAlert
-          elevation={6}
-          variant="filled"
-          severity="success"
-          style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)" }}>
-          Lisääminen suoritettu. Kirjaudu tapahtumaan tekstiviestin linkillä.
-        </MuiAlert>
+        /* <Container style={{ position: "absolute" }} component="main" maxWidth="sm" sx={{ mb: 4 }}> */
+        <div style={{ position: "absolute", width: "100%" }}>
+          <div style={{ maxWidth: "600px", margin: "300px auto" }}>
+
+            <Alert
+              elevation={6}
+              variant="filled"
+              severity="success"
+            >
+              {data.lisaaTapahtuma}
+            </Alert>
+          </div>
+        </div>
+        /* </Container> */
       )
     }
     if (loading) {
@@ -93,6 +148,20 @@ const Lisaaminen = () => {
 
   return (
     <>
+      {/* <div
+        style={{
+          height: "100px",
+          width: "100px",
+          backgroundColor: "green",
+          position: "absolute",
+          top: "60%",
+          marginLeft: "45%",
+          zIndex: 20,
+          borderRadius: "4px"
+        }}>
+        Tapahtuma aaaa luotu. Osallistujien tunnukset: Tunnus: aaaas kirjautuminen: https://aanestajaehdota.com/?k=G88Ck6Ng&t=jc8oAtNp Tunnus: dafds kirjautuminen: https://aanestajaehdota.com/?k=fJH2zLep&t=jc8oAtNp Tunnus: asdsdf kirjautuminen: https://aanestajaehdota.com/?k=hA3JvJcT&t=jc8oAtNp
+      </div> */}
+      {naytaInfo ? <Lisattava /> : null}
       <Palaute />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <h1 style={{ marginTop: "0", padding: "16px", fontSize: "56px", color: "#fafafa" }}>Luo tapahtuma</h1>
@@ -175,6 +244,7 @@ const Lisaaminen = () => {
         </Paper>
         <div style={{ margin: "2px", opacity: "0" }}>a</div>
       </Container>
+      <Button onClick={() => setNaytaInfo(true)}>Info esille</Button>
     </>
   )
 }
