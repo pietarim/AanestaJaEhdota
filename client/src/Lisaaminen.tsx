@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useCopyToClipboard } from 'usehooks-ts'
 import Card from '@mui/material/Card'
 import Alert from '@mui/material/Alert'
 import { produce } from "immer"
@@ -13,6 +14,7 @@ import { LUOMINEN } from "./graphOperations"
 import { borderRadius } from '@mui/system'
 import CloseIcon from '@mui/icons-material/Close'
 import './App.css'
+import { set } from 'immer/dist/internal'
 
 const Lisaaminen = () => {
 
@@ -26,8 +28,19 @@ const Lisaaminen = () => {
     const tallennettu = await muokkaa()
   }
 
+  interface TapahtumaInfo {
+    otsikko: string,
+    osallistujat: [Osallistujat],
+    salasana: string,
+  }
+
+  interface Osallistujat {
+    nimi: string,
+    salasana: string,
+  }
+
   const [muokkaa, { data, loading, error }] = useMutation<
-    { lisaaTapahtuma: string },
+    { lisaaTapahtuma: TapahtumaInfo },
     { otsikko: string, numero: string, vaiheet: string[], osallistujat: string[] }
   >(LUOMINEN, { variables: { otsikko, numero, vaiheet, osallistujat } })
 
@@ -75,6 +88,17 @@ const Lisaaminen = () => {
   } */
 
   const Lisattava = () => {
+    const [value, copy] = useCopyToClipboard()
+
+    function lisaaminen() {
+      const teksti = document.getElementById("teksti")?.innerHTML
+      if (typeof (teksti) === "string") {
+        copy(teksti)
+      }
+      else {
+        console.log("kopioiminen epäonnistui")
+      }
+    }
 
     return (
       <div
@@ -105,29 +129,63 @@ const Lisaaminen = () => {
           </p>
           <p>Olen tallentanut tapahtuman tiedot</p>
           <Button>Poista välimuistista</Button>
-          <Button>Kopioi tiedot</Button>
+          <Button onClick={() => lisaaminen()}>Kopioi tiedot</Button>
         </div>
       </div >
     )
   }
 
   const Palaute = () => {
+    const [value, copy] = useCopyToClipboard()
+
+    function lisaaminen() {
+      const teksti = document.getElementById("teksti")?.innerHTML
+      if (typeof (teksti) === "string") {
+        copy(teksti)
+      }
+      else {
+        console.log("kopioiminen epäonnistui")
+      }
+    }
     if (data) {
+
+      setNaytaInfo(true)
       console.log(data.lisaaTapahtuma)
       return (
         /* <Container style={{ position: "absolute" }} component="main" maxWidth="sm" sx={{ mb: 4 }}> */
-        <div style={{ position: "absolute", width: "100%" }}>
-          <div style={{ maxWidth: "600px", margin: "300px auto" }}>
-
-            <Alert
-              elevation={6}
-              variant="filled"
-              severity="success"
-            >
-              {data.lisaaTapahtuma}
-            </Alert>
+        <div
+          style={{
+            position: "absolute", width: "100%"
+          }}
+        >
+          <div className="lisays"
+          /* style={{
+            height: "100px",
+            maxWidth: "600px",
+            backgroundColor: "lightGrey",
+            position: "relative",
+            margin: "33% auto",
+            top: "33%",
+            margin: "50px auto",
+            marginLeft: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 200,
+            borderRadius: "4px",
+            boxShadow: "0 0 10px 10px",
+            padding: "8px",
+          }} */>
+            <CloseIcon onClick={() => setNaytaInfo(false)} className="sulje" style={{ position: "absolute", right: "12px" }} />
+            <h3>Tapahtuma lisätty "{ }"</h3>
+            <div id="teksti">
+              <h3>{data.lisaaTapahtuma.otsikko}</h3>
+              {data.lisaaTapahtuma.osallistujat.map((n: any) =>
+                <p>`{ }`</p>)}
+            </div>
+            <p>Olen tallentanut tapahtuman tiedot</p>
+            <Button>Poista välimuistista</Button>
+            <Button onClick={() => lisaaminen()}>Kopioi tiedot</Button>
           </div>
-        </div>
+        </div >
         /* </Container> */
       )
     }
