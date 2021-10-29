@@ -7,7 +7,14 @@ export const LUOMINEN = gql`
       numero: $numero,
       vaiheet: $vaiheet,
       osallistujat: $osallistujat
-    })
+    }) {
+      otsikko
+      osallistujat {
+        nimi
+        salasana
+      }
+      salasana
+    }
   }
 `
 
