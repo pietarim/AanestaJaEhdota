@@ -132,17 +132,20 @@ function App() {
       }
 
       const Ylapalkki = () => {
-        let leveys = window.innerWidth
-        if (leveys < 600) {
-          return (
-            <div id="palkki" style={{ display: "block" }} >
-              {esitettavaNimi ?
-                <Chip label={`${esitettavaNimi} kirjautunut sisään`} color="primary" /> : null}
-              <h1 style={{ color: "white", fontSize: "36px" }}>{tieto.otsikko}</h1>
-              <Button variant="contained" onClick={() => kirjauduUlos()}>kirjaudu ulos</Button>
+        /* let leveys = window.innerWidth
+        if (leveys < 600) { */
+        return (
+          <div className="palkki" >
+            {esitettavaNimi ?
+              <Chip className="nimiPala" label={`${esitettavaNimi} kirjautunut sisään`} color="primary" /> : null
+            }
+            <div className="otsikkoDiv">
+              <h1 className="tapahtumaOtsikko" style={{ color: "white", fontSize: "36px" }}>{tieto.otsikko}</h1>
             </div>
-          )
-        } else if (leveys > 599) {
+            <Button className="ylaNappi" variant="contained" onClick={() => kirjauduUlos()}>kirjaudu ulos</Button>
+          </div>
+        )
+        /* } else if (leveys > 599) {
           return (
             <div
               id="palkki"
@@ -164,13 +167,13 @@ function App() {
               </Button>
             </div>
           )
-        } else { return null }
+        } else { return null } */
       }
 
       return (
         <>
           <Ylapalkki />
-          <Container component="main" maxWidth="md" sx={{ pb: 4, px: 0, mt: 1 }}>
+          <Container component="main" maxWidth="md" sx={{ /* pb: 4, */ px: 0, mt: 1 }}>
             <Paper style={{ backgroundColor: "rgb(230, 223, 223, 0.9)" }} variant="outlined" sx={{ pb: 4, mt: { sm: 1 } }}>
               <Notification />
               {tieto.vaiheet.map((n: any) =>
@@ -186,16 +189,19 @@ function App() {
               )}
             </Paper>
           </Container>
-          <Typography
-            style={{ "color": "white", opacity: "1" }}
-            gutterBottom variant="h4" component="h3"
-          >
-            Osallistujat
-          </Typography>
-          <div>
-            {tieto.osallistujat.map((n: any) =>
-              <p key={n._id} style={{ "color": "white" }}><b>{n.nimi}</b></p>
-            )}
+          <div className="osallistujaTausta">
+
+            <h2
+              className="hOsallistujat"
+            >
+              <b>Osallistujat:</b>
+            </h2>
+            <div>
+              {tieto.osallistujat.map((n: any) =>
+                <p key={n._id}><b>  {n.nimi}  </b></p>
+              )}
+            </div>
+
           </div>
         </>
       )

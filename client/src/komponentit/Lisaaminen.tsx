@@ -209,7 +209,7 @@ const Lisaaminen = () => {
             </Grid>
             <Grid item xs={12} sm={6} >
               {data || infoMuistiArvo ?
-                <Grid item xs={12} sm={6} style={{ "display": "inline" }}>
+                <Grid item xs={12} sm={6} style={{"display": "inline"}}>
                   <Button
                     variant="contained" onClick={() => infoEsille()}>
                     Info esille

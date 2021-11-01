@@ -1,5 +1,27 @@
 import { ObjectType, Field, InputType } from "type-graphql"
 
+/* uusia tyyppejä */
+
+@ObjectType()
+export class PalautettavaKirjautumisInfo {
+  @Field()
+  otsikko?: string
+  @Field(type => [Osallistujat])
+  osallistujat?: Osallistujat[]
+  @Field()
+  salasana?: string
+}
+
+@ObjectType()
+export class Osallistujat {
+  @Field()
+  nimi: string
+  @Field()
+  salasana: string
+}
+
+/* uusia tyyppejä */
+
 @ObjectType()
 export class PalautettavaTapahtuma {
   @Field()

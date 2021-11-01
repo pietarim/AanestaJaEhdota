@@ -34,13 +34,14 @@ app.use("/api", kaikkiPoisRouter)
 app.use("/api", findOneRouter)
 
 
-const uri = process.env.url
+const uri = process.env.uri
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000,
   useFindAndModify: false
 }).catch(err => console.log(err.reason))
+  .then(console.log("yhdistetty mongoDB"))
 
 app.listen(PORT, () => {
   console.log("express on käynnistynyt")

@@ -28,7 +28,7 @@ body {
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -37,7 +37,7 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -52,12 +52,12 @@ body {
   }
 }
 
-#palkki {
+/* #palkki {
   width: "100%";
   display: "flex";
   justify-content: "space-between";
   margin-bottom: "24px";
-}
+} */
 
 .lisays {
   animation: fadeIn 0.5s /* fadeOut 0.5 */;
@@ -103,3 +103,104 @@ body {
 .tyyli {
   color: brown;
 }
+
+.palkki {
+  /* height: ; */
+}
+
+.osallistujaTausta div p {
+  color: rgb(255, 255, 255);
+  display: inline;
+  font-size: 26px;
+}
+
+.hOsallistujat {
+  color: rgb(253, 253, 253);
+  font-size: 42px;
+}
+
+@media (max-width: 450px) {
+  .osallistujaTausta div p {
+    color: black;
+    display: block;
+  }
+  .hOsallistujat {
+    color: black;
+  }
+}
+
+@media (max-width: 799px) {
+  .palkki {
+    padding-top: 10px;
+  }
+  .osallistujaTausta {
+    padding: 10px 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .palkki {
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: "24px";
+    text-align: center;
+  }
+
+  .otsikkoDiv {
+    text-align: center;
+  }
+
+  .palkki h1 {
+    position: relative;
+    /* left: 50%; */
+    /* transform: translateX(25%); */
+    display: inline-block;
+    font-size: 56px;
+  }
+  .nimiPala {
+    top: 20px;
+    /* transform: translateY(-50%); */
+    position: absolute;
+    left: 10px;
+  }
+  .ylaNappi {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-60%);
+  }
+}
+/* @media (min-width: 1000px) {
+  .nimiPala {
+    position: relative;
+    left: -15vw;
+  }
+  .ylaNappi {
+    position: relative;
+    right: -15vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .nimiPala {
+    position: relative;
+    left: -20vw;
+  }
+  .ylaNappi {
+    position: relative;
+    right: -20vw;
+  }
+}
+
+@media (min-width: 1650px) {
+  .nimiPala {
+    position: relative;
+    left: -35vw;
+    transform: translateX(50%);
+  }
+  .ylaNappi {
+    position: relative;
+    right: -35vw;
+    transform: translateX(-50%);
+  }
+} */

@@ -1,10 +1,11 @@
-import { Schema, model, Document, PopulatedDoc } from 'mongoose';
+import { Schema, model, Document, PopulatedDoc } from 'mongoose'
 
-interface Tapahtuma {
-    otsikko?: string
-    vaiheet?: PopulatedDoc<Ehdotus & Document>
-    osallistujat?: PopulatedDoc<Osallistuja & Document>
+export interface Tapahtuma {
+    otsikko: string
+    vaiheet: PopulatedDoc<Ehdotus & Document>
+    osallistujat: PopulatedDoc<Osallistuja & Document>
     paivays: number
+    salasana: string
 }
 
 interface Ehdotus {

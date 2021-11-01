@@ -1,13 +1,15 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Query, Mutation, Arg } from "type-graphql"
 import service from "../db/serviceV2"
+import { Tapahtuma } from "../type/tapahtuma"
 import {
+    PalautettavaKirjautumisInfo,
     PalautettavaTapahtuma,
     KirjautuminenInput,
     TapahtumaLuominenInput,
     AaniInput,
     EhdotusInput,
     Kirjautuminen
-} from "../type/tapahtuma";
+} from "../type/tapahtuma"
 
 @Resolver(of => PalautettavaTapahtuma)
 export class TapahtumaResolver {
@@ -27,13 +29,16 @@ export class TapahtumaResolver {
         return data
     }
 
-    @Mutation(of => String)
+    @Mutation(/* of => String */returns => PalautettavaKirjautumisInfo)
     async lisaaTapahtuma(
         @Arg("tapahtuma") tapahtuma: TapahtumaLuominenInput
-    ): Promise<String> {
+    ): Promise</* String */PalautettavaKirjautumisInfo> {
+        console.log("lisaaminen kaynnistetty")
         const payload = tapahtuma
-        const palaute = await service.luominen(payload)
-        return "hei"
+        const tapahtumaInfo = await service.luominen(payload)
+        console.log("lisaatapahtuma mutaatio")
+        console.log(tapahtumaInfo)
+        return tapahtumaInfo
     }
 
     @Mutation(of => String)

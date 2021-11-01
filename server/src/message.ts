@@ -4,6 +4,18 @@ import { VERSIO } from "./config"
 
 const urlViestiin = VERSIO === "kehitys" ? process.env.clientUrlTest : process.env.URL
 
+export function ViestiFormatointi(tapahtuma: any) {
+  let viesti = `Tapahtuma ${tapahtuma.otsikko} luotu. Osallistujien tunnukset:
+`
+  let msmOsallistujalle = ""
+  tapahtuma.osallistujat.forEach(osallistuja => {
+    msmOsallistujalle += `Tunnus: ${osallistuja.nimi} kirjautuminen: ${urlViestiin}/?k=${osallistuja.salasana}&t=${tapahtuma.salasana}
+`
+  })
+  viesti += msmOsallistujalle
+  console.log(msmOsallistujalle)
+  return viesti
+}
 
 export function LuoMsm(tapahtuma, numero) {
   let viesti = `Tapahtuma ${tapahtuma.otsikko} luotu. Osallistujien tunnukset:
@@ -19,6 +31,7 @@ export function LuoMsm(tapahtuma, numero) {
   } else if (VERSIO === "kehitys") {
     console.log(viesti)
   }
+  return viesti
 }
 
 export function lahetaViesti(viesti, numero) {

@@ -1,7 +1,7 @@
 import { tapahtumaModel, ehdotusModel, osallistujaModel } from '../schema'
 import * as jwt from "jsonwebtoken"
 require('dotenv').config({ path: "./src/.env" })
-import { LuoMsm } from "../message"
+import { LuoMsm, ViestiFormatointi } from "../message"
 import { DB_TAPAHTUMA_VOIMASSA } from "../config"
 
 function decodeToken(token) {
@@ -86,8 +86,9 @@ const luominen = async (payload) => {
   const luotuTapahtuma = await tapahtumaDoc.save()
   const tapahtumaInfo = await tapahtumaModel.findById(luotuTapahtuma._id)
     .populate('osallistujat', { nimi: 1, ehdotukset: 1, salasana: 1 })
-  LuoMsm(tapahtumaInfo, payload.numero)
-  return "tehty"
+  const tapahtumaTieto = ViestiFormatointi(tapahtumaInfo)
+  /* LuoMsm(tapahtumaInfo, payload.numero) */
+  return tapahtumaInfo
 }
 
 const kirjautuminen = async (tunnistautuminen) => {
