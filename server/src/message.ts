@@ -26,37 +26,6 @@ export function LuoMsm(tapahtuma, numero) {
 `
   })
   viesti += msmOsallistujalle
-  if (VERSIO === "tuotanto") {
-    lahetaViesti(viesti, numero)
-  } else if (VERSIO === "kehitys") {
-    console.log(viesti)
-  }
+
   return viesti
-}
-
-export function lahetaViesti(viesti, numero) {
-
-  const apiKey = process.env.apiKey
-  const apiSecret = process.env.apiSecret
-
-  const vonage = new Vonage({
-    apiKey: apiKey,
-    apiSecret: apiSecret
-  })
-
-  const from = "Pietsk"
-  const to = numero
-  const text = viesti
-
-  vonage.message.sendSms(from, to, text, (err, responseData) => {
-    if (err) {
-      console.log(err)
-    } else {
-      if (responseData.messages[0]['status'] === "0") {
-        /* console.log("Message sent successfully."); */
-      } else {
-        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`)
-      }
-    }
-  })
 }
