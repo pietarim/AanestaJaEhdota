@@ -132,8 +132,6 @@ function App() {
       }
 
       const Ylapalkki = () => {
-        /* let leveys = window.innerWidth
-        if (leveys < 600) { */
         return (
           <div className="palkki" >
             {esitettavaNimi ?
@@ -145,29 +143,6 @@ function App() {
             <Button className="ylaNappi" variant="contained" onClick={() => kirjauduUlos()}>kirjaudu ulos</Button>
           </div>
         )
-        /* } else if (leveys > 599) {
-          return (
-            <div
-              id="palkki"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "24px"
-              }}>
-              {esitettavaNimi ?
-                <Chip style={{ margin: "10px" }} label={`${esitettavaNimi} kirjautunut sisään`} color="primary" /> : null}
-              <h1 style={{ color: "white", fontSize: "56px" }}>{tieto.otsikko}</h1>
-              <Button
-                style={{ height: "100%", margin: "10px" }}
-                variant="contained"
-                onClick={() => kirjauduUlos()}
-              >
-                kirjaudu ulos
-              </Button>
-            </div>
-          )
-        } else { return null } */
       }
 
       return (

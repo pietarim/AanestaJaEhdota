@@ -18,7 +18,7 @@ const Lisaaminen = () => {
   const [vaiheet, setVaiheet] = useState(["", "", "", "", ""])
   const [numero, setNumero] = useState("")
   const [naytaInfoMuistisssa, setNaytaInfoMuistisssa] = useState(false)
-  const [infoMuistiArvo, setInfoMuistiArvo] = useState<Object | undefined>()
+  const [infoMuistiArvo, setInfoMuistiArvo] = useState<Object | null>()
   const [naytaInfo, setNaytaInfo] = useState(false)
 
   useEffect(() => {
@@ -71,6 +71,7 @@ const Lisaaminen = () => {
     localStorage.removeItem("kirjInfo")
     setNaytaInfo(false)
     setNaytaInfoMuistisssa(false)
+    setInfoMuistiArvo(null)
   }
 
   function rivinPoistaminen() {
@@ -144,9 +145,11 @@ const Lisaaminen = () => {
                   Käyttäjän {n.nimi} tunnus: {naytettavaUrl}/?k={n.salasana}&t={data.salasana}
                 </p>)}
             </div>
-            <p>Olen tallentanut tapahtuman tiedot</p>
-            <Button onClick={() => poistaMuistista()}>Poista muistista</Button>
-            <Button onClick={() => lisaaminen()}>Kopioi tiedot</Button>
+            <p><b>Mikäli olet tallentanut tunnukset itsellesi voit <span
+              className="poistaTeksti"
+              onClick={() => poistaMuistista()}
+            >poistaa tunnukset muistitsta</span></b></p>
+            <Button onClick={() => lisaaminen()}>Kopioi</Button>
           </div>
         </div >
       )
@@ -208,8 +211,8 @@ const Lisaaminen = () => {
                 : null} */}
             </Grid>
             <Grid item xs={12} sm={6} >
-              {data || infoMuistiArvo ?
-                <Grid item xs={12} sm={6} style={{"display": "inline"}}>
+              {infoMuistiArvo ?
+                <Grid item xs={12} sm={6} style={{ "display": "inline" }}>
                   <Button
                     variant="contained" onClick={() => infoEsille()}>
                     Info esille

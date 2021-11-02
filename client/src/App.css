@@ -14,6 +14,7 @@ body {
   z-index: -2;
   background-image: url(./ruokailu.jpeg);
   position: fixed;
+  background-position: center;
   opacity: 0.84;
 }
 
@@ -28,16 +29,15 @@ body {
   }
 }
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
+.poistaTeksti {
+  transition: 1s;
+  color: crimson;
+}
+
+.poistaTeksti:hover {
+  cursor: pointer;
+  background-color: rgb(145, 145, 145);
+}
 
 .App-link {
   color: #61dafb;
@@ -51,13 +51,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* #palkki {
-  width: "100%";
-  display: "flex";
-  justify-content: "space-between";
-  margin-bottom: "24px";
-} */
 
 .lisays {
   animation: fadeIn 0.5s /* fadeOut 0.5 */;
@@ -81,15 +74,6 @@ body {
   }
 }
 
-/* @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-} */
-
 .sulje {
   position: absolute;
   right: 12xp;
@@ -104,28 +88,20 @@ body {
   color: brown;
 }
 
-.palkki {
-  /* height: ; */
-}
-
 .osallistujaTausta div p {
-  color: rgb(255, 255, 255);
+  color: black;
   display: inline;
   font-size: 26px;
 }
 
 .hOsallistujat {
-  color: rgb(253, 253, 253);
+  color: black;
   font-size: 42px;
 }
 
 @media (max-width: 450px) {
   .osallistujaTausta div p {
-    color: black;
     display: block;
-  }
-  .hOsallistujat {
-    color: black;
   }
 }
 
@@ -152,14 +128,11 @@ body {
 
   .palkki h1 {
     position: relative;
-    /* left: 50%; */
-    /* transform: translateX(25%); */
     display: inline-block;
     font-size: 56px;
   }
   .nimiPala {
     top: 20px;
-    /* transform: translateY(-50%); */
     position: absolute;
     left: 10px;
   }
@@ -170,37 +143,3 @@ body {
     transform: translateX(-60%);
   }
 }
-/* @media (min-width: 1000px) {
-  .nimiPala {
-    position: relative;
-    left: -15vw;
-  }
-  .ylaNappi {
-    position: relative;
-    right: -15vw;
-  }
-}
-
-@media (min-width: 1200px) {
-  .nimiPala {
-    position: relative;
-    left: -20vw;
-  }
-  .ylaNappi {
-    position: relative;
-    right: -20vw;
-  }
-}
-
-@media (min-width: 1650px) {
-  .nimiPala {
-    position: relative;
-    left: -35vw;
-    transform: translateX(50%);
-  }
-  .ylaNappi {
-    position: relative;
-    right: -35vw;
-    transform: translateX(-50%);
-  }
-} */
